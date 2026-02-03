@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Opening Hours
- * Plugin URI: https://github.com/stu/opening-hours
+ * Plugin URI: https://github.com/nonatech-uk/opening-hours
  * Description: Display business opening hours from Google Places API
  * Version: 1.0.0
  * Author: Stu
- * License: GPLv3
+ * License: CC BY-NC 4.0
  * Text Domain: opening-hours
  */
 
@@ -20,6 +20,7 @@ define('OPENING_HOURS_URL', plugin_dir_url(__FILE__));
 require_once OPENING_HOURS_PATH . 'includes/class-settings.php';
 require_once OPENING_HOURS_PATH . 'includes/class-google-places.php';
 require_once OPENING_HOURS_PATH . 'includes/class-shortcode.php';
+require_once OPENING_HOURS_PATH . 'includes/class-updater.php';
 
 class Opening_Hours {
 
@@ -35,6 +36,7 @@ class Opening_Hours {
     public function __construct() {
         new Opening_Hours_Settings();
         new Opening_Hours_Shortcode();
+        new Opening_Hours_Updater(__FILE__);
 
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
     }
