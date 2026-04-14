@@ -46,6 +46,9 @@ class Opening_Hours_Updater {
         ));
 
         if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+            opening_hours_log('warning', 'GitHub release check failed', [
+                'http_code' => is_wp_error($response) ? 0 : wp_remote_retrieve_response_code($response),
+            ]);
             return false;
         }
 

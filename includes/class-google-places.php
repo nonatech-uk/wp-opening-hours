@@ -31,6 +31,7 @@ class Opening_Hours_Google_Places {
         }
 
         set_transient('opening_hours_data', $data, $this->cache_duration * HOUR_IN_SECONDS);
+        opening_hours_log('info', 'Opening hours cache refreshed from API');
         return $data;
     }
 
@@ -44,6 +45,7 @@ class Opening_Hours_Google_Places {
         $response = wp_remote_get($url, array('timeout' => 15));
 
         if (is_wp_error($response)) {
+            opening_hours_log('error', 'Google Places API request failed: ' . $response->get_error_message());
             return $response;
         }
 
@@ -52,10 +54,12 @@ class Opening_Hours_Google_Places {
 
         if (empty($data) || $data['status'] !== 'OK') {
             $error_msg = isset($data['error_message']) ? $data['error_message'] : 'Unknown API error';
+            opening_hours_log('warning', 'Google Places API error: ' . $error_msg, ['status' => $data['status'] ?? 'unknown']);
             return new WP_Error('api_error', $error_msg);
         }
 
         if (!isset($data['result']['opening_hours'])) {
+            opening_hours_log('warning', 'No opening hours found for place', ['place_id' => $this->place_id]);
             return new WP_Error('no_hours', 'No opening hours found for this place');
         }
 
