@@ -3,7 +3,7 @@
  * Plugin Name: Opening Hours
  * Plugin URI: https://github.com/nonatech-uk/opening-hours
  * Description: Display business opening hours from Google Places API
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Stu
  * License: CC BY-NC 4.0
  * Update URI: https://github.com/nonatech-uk/opening-hours
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('OPENING_HOURS_VERSION', '1.1.0');
+define('OPENING_HOURS_VERSION', '1.1.1');
 define('OPENING_HOURS_PATH', plugin_dir_path(__FILE__));
 define('OPENING_HOURS_URL', plugin_dir_url(__FILE__));
 
