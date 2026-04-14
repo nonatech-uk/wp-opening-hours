@@ -6,6 +6,7 @@
  * Version: 1.1.0
  * Author: Stu
  * License: CC BY-NC 4.0
+ * Update URI: https://github.com/nonatech-uk/opening-hours
  * Text Domain: opening-hours
  */
 
